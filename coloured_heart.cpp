@@ -197,13 +197,7 @@ for(int i=1;i<=60;i++)
 gotoxy(0,0);
     }
 
-void text()
-{char a[1000]="Draga mea Luiza, iti multumesc ca ai ramas cu mine atata timp, si iti urez un digital si calduros la multi ani din partea mea. Sper sa ai parte de toate experientele pe care ti le-ai propus, sa ajungi unde vrei sa fii si sa fii ceea ce vrei sa fii. Minunata. Te iubesc. De foarte mult timp, si sper sa fiu alaturi de tine in continuare. Ok. Gata cu urarile, daca ai stat pana aici inseamna ca deja te-ai plictisit de urari. La multi ani! Hah, ce teapa ti-am dat, ei? Oricum, repede au mai trecut 18 ani. Nici nu stiu cand, daca stau sa ma gandesc bine. De fapt, daca stau sa ma gandesc bine, au trecut din 1997 si pana acum. Nu e greu calculul. Te iubesc. Te iubesc. Te iubesc. Traieste asa cum simti, atunci cand simti, si oricat de morocanos as parea, iti urez tot binele din lume. Tot tot tot, pentru tine. Pentru ca meriti! Si acum, la piessse de rezistences.................";
- for(int i=0;i<=1000;i++)
- {cout<<a[i];
-  Sleep(100);
- }
-}
+
 void wave(int a[60][60])
 {for(int i=1;i<=60;i++)
   for(int j=1;j<=60;j++)
