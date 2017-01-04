@@ -9,5 +9,5 @@ public interface ITask {
     public String getText();
     public void setText(String newText);
     public int generateID();
-
+    public int getID();
 }

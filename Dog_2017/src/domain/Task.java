@@ -41,4 +41,9 @@ public class Task implements ITask {
     public int generateID(){
         return ID++;
     }
+
+    @Override
+    public int getID(){
+        return this.ID;
+    }
 }
