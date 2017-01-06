@@ -10,4 +10,5 @@ public interface ITask {
     public void setText(String newText);
     public int generateID();
     public int getID();
+    public void setID(int newID);
 }

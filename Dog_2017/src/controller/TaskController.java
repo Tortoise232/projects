@@ -5,6 +5,7 @@ import domain.Task;
 import repository.IRepository;
 import repository.InMemoryRepository;
 
+import java.util.List;
 import java.util.stream.Collector;
 
 /**
@@ -38,7 +39,7 @@ public class TaskController {
             throw new Exception("Task was found multiple times;");
     }
 
-    public void modifyTask(int id, String newText,int newDuration) throws Exception {
+    public void modifyTask(int id, String newText,float newDuration) throws Exception {
         ITask task = this.findTask(id);
         task.setDuration(newDuration);
         task.setText(newText);
@@ -47,5 +48,9 @@ public class TaskController {
     public void modifyTask(ITask modifiedTask) throws Exception {
         ITask task = this.findTask(modifiedTask.getID());
         task = modifiedTask;
+    }
+
+    public List<ITask> getRepoTasks(){
+        return this.repo.getData();
     }
 }
