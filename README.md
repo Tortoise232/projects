@@ -12,3 +12,5 @@ economicon - made in august 2015, it's a tool I used for money management
 tamagochi - made in the spring of 2015, it's a game of life where cells hunt eachother and food.
 
 timer - self-explanatory 
+
+Dog2017 - companion app in the making
