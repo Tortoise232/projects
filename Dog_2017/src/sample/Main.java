@@ -2,6 +2,7 @@ package sample;
 
 import controller.TaskController;
 import domain.ITask;
+import domain.Task;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -10,9 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import myUtils.IStringProcessor;
+import myUtils.TaskProcessor;
+import repository.FileRepository;
 import repository.IRepository;
 import repository.InMemoryRepository;
 import view.DesktopView;
+
+import java.io.IOException;
 
 public class Main{
     /*
@@ -29,9 +35,10 @@ public class Main{
     }
     */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //launch(args);
-        IRepository<ITask> repo = new InMemoryRepository<ITask>();
+        IStringProcessor<ITask> myProcessor = new TaskProcessor();
+        IRepository<ITask> repo = new FileRepository<ITask>("tasks",myProcessor);
         TaskController controller = new TaskController(repo);
         DesktopView newView = new DesktopView(controller);
         newView.mainLoop();

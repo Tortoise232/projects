@@ -10,4 +10,5 @@ public interface IRepository<T> {
     void removeObject(T object);
     List<T> getData();
     void setData(List<T> data);
+    int getSize();
 }

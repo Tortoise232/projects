@@ -33,6 +33,11 @@ public class InMemoryRepository<T> implements IRepository<T> {
     }
 
     @Override
+    public int getSize() {
+        return this.data.size();
+    }
+
+    @Override
     public void removeObject(Object object) {
         data.remove(object);
     }

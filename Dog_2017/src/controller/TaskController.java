@@ -18,8 +18,18 @@ public class TaskController {
         this.repo = givenRepo;
     }
 
-    public void addTask(ITask newTask){
+    public void addTask(ITask newTask) throws Exception {
+        if(this.findTask(newTask.getID()) != null) {
+            int[] maxID = {0};
+            repo.getData().forEach((ITask task) ->{
+             if(task.getID() > maxID[0])
+                 maxID[0] = task.getID();
+                    }
+             );
+            newTask.setID(maxID[0] + 1);
+        }
         repo.addObject(newTask);
+
     }
 
     public void removeTask(int id) throws Exception {

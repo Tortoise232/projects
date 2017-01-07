@@ -17,14 +17,18 @@ public class DesktopView {
         this.myController = controller;
     }
 
-    public void addTask(){
+    public void addTask()  {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Give task description: ");
         String description = scanner.nextLine();
         System.out.println("Give task duration");
         float duration = scanner.nextFloat();
         ITask newTask = new Task(description,duration);
-        this.myController.addTask(newTask);
+        try {
+            this.myController.addTask(newTask);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeTask(){
@@ -82,9 +86,12 @@ public class DesktopView {
                     System.out.println(" ID | DESCRIPTION                    | DURATION");
                     this.showTasks();
                     break;
+                case "quit":
+                    return;
                 default:
                     break;
             }
+
         }
     }
 
