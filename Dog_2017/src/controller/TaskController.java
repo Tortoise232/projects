@@ -2,9 +2,13 @@ package controller;
 
 import domain.ITask;
 import domain.Task;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import repository.IRepository;
 import repository.InMemoryRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collector;
 
@@ -62,5 +66,18 @@ public class TaskController {
 
     public List<ITask> getRepoTasks(){
         return this.repo.getData();
+    }
+
+    public ObservableList<Task> getDataForView(){
+
+       ArrayList<Task> result = new ArrayList<Task>();
+        this.repo.getData().forEach((ITask task)->{
+            Task tempTask = new Task();
+            tempTask.setID(task.getID());
+            tempTask.setDuration(task.getDuration());
+            tempTask.setText(task.getText());
+            result.add(tempTask);
+        });
+        return FXCollections.observableArrayList(result);
     }
 }

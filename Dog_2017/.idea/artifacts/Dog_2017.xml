@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Dog_2017">
+    <output-path>$PROJECT_DIR$/out/artifacts/Dog_2017</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="workpreasu" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Dog2017" />
+        <option name="vendor" value="peteanTraianMihai" />
+        <option name="version" value="0.2" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Dog_2017.jar">
+        <element id="module-output" name="Dog_2017" />
+      </element>
+    </root>
+  </artifact>
+</component>

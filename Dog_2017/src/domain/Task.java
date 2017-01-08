@@ -2,6 +2,7 @@ package domain;
 
 
 import com.sun.deploy.util.StringUtils;
+import javafx.collections.ObservableArray;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -9,7 +10,7 @@ import java.util.Calendar;
 /**
  * Created by Petean Mihai on 1/3/2017.
  */
-public class Task implements ITask {
+public class Task implements ITask{
     protected String text;
     protected static int globalID = 0;
     protected int ID;
