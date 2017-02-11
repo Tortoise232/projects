@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dog_2017" default="all">
+  
+  
+  <property file="dog_2017_01.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.ear"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module Dog_2017 -->
+  
+  <dirname property="module.dog_2017.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.dog_2017" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.dog_2017" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.dog_2017" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.dog_2017" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="dog_2017.output.dir" value="${module.dog_2017.basedir}/out/production/Dog_2017"/>
+  <property name="dog_2017.testoutput.dir" value="${module.dog_2017.basedir}/out/test/Dog_2017"/>
+  
+  <path id="dog_2017.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="dog_2017.module.production.classpath">
+    <path refid="${module.jdk.classpath.dog_2017}"/>
+  </path>
+  
+  <path id="dog_2017.runtime.production.module.classpath">
+    <pathelement location="${dog_2017.output.dir}"/>
+  </path>
+  
+  <path id="dog_2017.module.classpath">
+    <path refid="${module.jdk.classpath.dog_2017}"/>
+    <pathelement location="${dog_2017.output.dir}"/>
+  </path>
+  
+  <path id="dog_2017.runtime.module.classpath">
+    <pathelement location="${dog_2017.testoutput.dir}"/>
+    <pathelement location="${dog_2017.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.dog_2017">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.dog_2017">
+    <patternset refid="excluded.from.module.dog_2017"/>
+  </patternset>
+  
+  <path id="dog_2017.module.sourcepath">
+    <dirset dir="${module.dog_2017.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.dog_2017" depends="compile.module.dog_2017.production,compile.module.dog_2017.tests" description="Compile module Dog_2017"/>
+  
+  <target name="compile.module.dog_2017.production" depends="register.custom.compilers" description="Compile module Dog_2017; production classes">
+    <mkdir dir="${dog_2017.output.dir}"/>
+    <javac2 destdir="${dog_2017.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.dog_2017}/javac">
+      <compilerarg line="${compiler.args.dog_2017}"/>
+      <bootclasspath refid="dog_2017.module.bootclasspath"/>
+      <classpath refid="dog_2017.module.production.classpath"/>
+      <src refid="dog_2017.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.dog_2017"/>
+    </javac2>
+    
+    <copy todir="${dog_2017.output.dir}">
+      <fileset dir="${module.dog_2017.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.dog_2017.tests" depends="register.custom.compilers,compile.module.dog_2017.production" description="compile module Dog_2017; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.dog_2017" description="cleanup module">
+    <delete dir="${dog_2017.output.dir}"/>
+    <delete dir="${dog_2017.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.dog_2017, clean.artifact.dog_2017" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.dog_2017" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.dog_2017" value="${basedir}/out/artifacts/Dog_2017"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="artifact.temp.output.Dog_2017" value="${artifacts.temp.dir}/Dog_2017.jar"/>
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath="${jdk.home.1.8}/lib/ant-javafx.jar"/>
+  </target>
+  
+  <target name="clean.artifact.dog_2017" description="clean Dog_2017 artifact output">
+    <delete dir="${artifact.output.dog_2017}"/>
+  </target>
+  
+  <target name="artifact.dog_2017" depends="init.artifacts, compile.module.dog_2017" description="Build &#39;Dog_2017&#39; artifact" xmlns:fx="javafx:com.sun.javafx.tools.ant">
+    <mkdir dir="${artifact.output.dog_2017}"/>
+    <ant antfile="" target="null" dir="">
+      <property name="artifact.output.path" value="${artifact.output.dog_2017}"/>
+    </ant>
+    <copy todir="${artifact.temp.output.Dog_2017}">
+      <fileset dir="${dog_2017.output.dir}"/>
+    </copy>
+    <fx:fileset id="all_but_Dog_2017" dir="${artifact.temp.output.Dog_2017}" includes="**/*.jar">
+      <exclude name="Dog_2017.jar"/>
+    </fx:fileset>
+    <fx:fileset id="all_Dog_2017" dir="${artifact.temp.output.Dog_2017}" includes="**/*.jar"/>
+    <fx:application id="Dog_2017_id" name="Dog_2017" mainClass="sample.Main" version="x"/>
+    <fx:csstobin outdir="${artifact.temp.output.Dog_2017}">
+      <fileset dir="${artifact.temp.output.Dog_2017}" includes="**/*.css"/>
+    </fx:csstobin>
+    <fx:jar destfile="${artifact.temp.output.Dog_2017}/Dog_2017.jar">
+      <fx:application refid="Dog_2017_id"/>
+      <fileset dir="${artifact.temp.output.Dog_2017}" excludes="**/*.jar"/>
+      <fx:resources>
+        <fx:fileset refid="all_but_Dog_2017"/>
+      </fx:resources>
+      <manifest>
+        <attribute name="Implementation-Title" value="Dog2017"/>
+        <attribute name="Implementation-Version" value="x"/>
+        <attribute name="Implementation-Vendor" value="peteanTraianMihai"/>
+      </manifest>
+    </fx:jar>
+    <fx:deploy width="600" height="400" updatemode="background" outdir="${artifact.temp.output.Dog_2017}/deploy" outfile="Dog_2017">
+      <fx:permissions elevated="true"/>
+      <fx:application refid="Dog_2017_id"/>
+      <fx:info title="Dog2017" vendor="peteanTraianMihai" description="helloapphere"/>
+      <fx:resources>
+        <fx:fileset refid="all_Dog_2017"/>
+      </fx:resources>
+    </fx:deploy>
+    <property name="artifact.sign.vendor.Dog_2017" value="CN=peteanTraianMihai"/>
+    <property name="artifact.sign.alias.Dog_2017" value="jb"/>
+    <property name="artifact.sign.keystore.Dog_2017" value="${artifact.temp.output.Dog_2017}\jb-key.jks"/>
+    <property name="artifact.sign.storepass.Dog_2017" value="storepass"/>
+    <property name="artifact.sign.keypass.Dog_2017" value="keypass"/>
+    <genkey dname="${artifact.sign.vendor.Dog_2017}" alias="${artifact.sign.alias.Dog_2017}" keystore="${artifact.sign.keystore.Dog_2017}" storepass="${artifact.sign.storepass.Dog_2017}" keypass="${artifact.sign.keypass.Dog_2017}"/>
+    <signjar alias="${artifact.sign.alias.Dog_2017}" keystore="${artifact.sign.keystore.Dog_2017}" storepass="${artifact.sign.storepass.Dog_2017}" keypass="${artifact.sign.keypass.Dog_2017}">
+      <fileset dir="${artifact.temp.output.Dog_2017}/deploy">
+        <include name="*.jar"/>
+      </fileset>
+    </signjar>
+    <copy todir="${artifact.output.dog_2017}">
+      <fileset dir="${artifact.temp.output.Dog_2017}/deploy"/>
+    </copy>
+    <delete includeemptydirs="true">
+      <fileset dir="${artifact.temp.output.Dog_2017}"/>
+    </delete>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.dog_2017" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
