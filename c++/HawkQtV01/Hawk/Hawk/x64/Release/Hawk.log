@@ -1,0 +1,36 @@
+﻿Build started 03/06/2016 13:06:15.
+     1>Project "C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\Hawk\Hawk.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Moc'ing hawk.h...
+         Uic'ing hawk.ui...
+         Moc'ing popOuts.h...
+         Rcc'ing hawk.qrc...
+     1>RCC : warning : No resources in 'C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\Hawk\hawk.qrc'.
+         
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtCore /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtGui /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtWidgets /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQml /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQuick /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQuickWidgets /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_QUICKWIDGETS_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gd /TP /errorReport:prompt Controller.cpp domain.cpp GeneratedFiles\Release\moc_hawk.cpp GeneratedFiles\Release\moc_popOuts.cpp hawk.cpp main.cpp Repository.cpp
+         Controller.cpp
+         domain.cpp
+         moc_hawk.cpp
+         moc_popOuts.cpp
+         hawk.cpp
+         main.cpp
+         Repository.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include /I.\GeneratedFiles\Release /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtCore /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtGui /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtWidgets /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQml /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQuick /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQuickWidgets /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_QUICKWIDGETS_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Release\\" /Fd"x64\Release\vc140.pdb" /Gd /TP /errorReport:prompt GeneratedFiles\qrc_hawk.cpp
+         qrc_hawk.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Release\\Hawk.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.6.0\5.6\msvc2015_64\lib qtmain.lib Qt5Core.lib Qt5Gui.lib Qt5Widgets.lib Qt5Qml.lib Qt5Quick.lib Qt5QuickWidgets.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Release\Hawk.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Release\Hawk.lib" /MACHINE:X64 x64\Release\Controller.obj
+         x64\Release\domain.obj
+         x64\Release\qrc_hawk.obj
+         x64\Release\moc_hawk.obj
+         x64\Release\moc_popOuts.obj
+         x64\Release\hawk.obj
+         x64\Release\main.obj
+         x64\Release\Repository.obj
+         Hawk.vcxproj -> C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Release\Hawk.exe
+     1>Done Building Project "C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\Hawk\Hawk.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:32.85

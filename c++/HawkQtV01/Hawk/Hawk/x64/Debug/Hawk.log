@@ -1,0 +1,26 @@
+﻿Build started 11/06/2016 19:28:01.
+     1>Project "C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\Hawk\Hawk.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /I.\GeneratedFiles /I. /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include /I.\GeneratedFiles\Debug /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtCore /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtGui /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtWidgets /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQml /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQuick /IC:\Qt\Qt5.6.0\5.6\msvc2015_64\include\QtQuickWidgets /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_WIDGETS_LIB /D QT_QML_LIB /D QT_QUICK_LIB /D QT_QUICKWIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Repository.cpp
+         Repository.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Debug\\Hawk.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.6.0\5.6\msvc2015_64\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib Qt5Qmld.lib Qt5Quickd.lib Qt5QuickWidgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Debug\Hawk.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Debug\Hawk.lib" /MACHINE:X64 x64\Debug\Controller.obj
+         x64\Debug\domain.obj
+         x64\Debug\moc_addPopout.obj
+         x64\Debug\moc_hawk.obj
+         x64\Debug\moc_hoursPopout.obj
+         x64\Debug\moc_popOuts.obj
+         x64\Debug\moc_removePopout.obj
+         x64\Debug\qrc_hawk.obj
+         x64\Debug\hawk.obj
+         x64\Debug\hoursPopout.obj
+         x64\Debug\main.obj
+         x64\Debug\addPopout.obj
+         x64\Debug\removePopout.obj
+         x64\Debug\Repository.obj
+         Hawk.vcxproj -> C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\x64\Debug\Hawk.exe
+     1>Done Building Project "C:\Users\Mihai\Desktop\INFO\C++\C++ COLLEGE\HawkQtV01\Hawk\Hawk\Hawk.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.17
