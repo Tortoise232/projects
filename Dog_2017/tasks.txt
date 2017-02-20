@@ -1,3 +1,1 @@
-(0) | 1                              | 1.0hr
-(1) | 2                              | 2.0hrs
-(5) | something                      | 11.0hrs
+(0) | sad                            | 2.0hrs

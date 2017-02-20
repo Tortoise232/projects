@@ -3,6 +3,7 @@ package repository;
 import myUtils.IStringProcessor;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,11 +15,11 @@ import java.util.Scanner;
 public class FileRepository<T> implements IRepository<T> {
     protected String fileName;
     //after this many operations update the contents of the file with the current in-memory data
-    protected int maxUnsavedOperations = 3;
+    protected int maxUnsavedOperations = 1;
     protected int currentNo = 0;
     protected List<T> temporaryHold; //why? because of ease, I guess.
     protected IStringProcessor<T> stringProcessor;
-    public FileRepository(String fileName,IStringProcessor<T> processor ) throws IOException {
+    public FileRepository(String fileName,IStringProcessor<T> processor ) throws IOException, ParseException {
         this.temporaryHold = new ArrayList<T>();
         this.fileName = fileName;
         this.stringProcessor = processor;
@@ -59,12 +60,13 @@ public class FileRepository<T> implements IRepository<T> {
     }
 
     @Override
-    public void removeObject(T object) {
+    public T removeObject(T object) {
         temporaryHold.remove(object);
         if(++currentNo >= maxUnsavedOperations) {
             updateFile();
             currentNo = 0;
         }
+        return object;
     }
 
     @Override

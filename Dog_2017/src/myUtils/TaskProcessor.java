@@ -18,11 +18,6 @@ public class TaskProcessor implements IStringProcessor<ITask> {
         return newTask;
     }
 
-    @Override
-    public int processID(String toProcess) {
-        String[] cutString = toProcess.split("\\| ");
-        return Integer.parseInt(cutString[0].replaceAll("[^0-9]",""));
-    }
 
 
 }

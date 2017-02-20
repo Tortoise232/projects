@@ -38,8 +38,9 @@ public class InMemoryRepository<T> implements IRepository<T> {
     }
 
     @Override
-    public void removeObject(Object object) {
+    public Object removeObject(Object object) {
         data.remove(object);
+        return object;
     }
 
 }

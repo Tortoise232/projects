@@ -1,8 +1,9 @@
 package view;
 
+import controller.NotesController;
 import controller.TaskController;
+import domain.Note;
 import domain.Task;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,35 +16,113 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 
-import java.util.Collection;
+import static javafx.scene.control.TableView.CONSTRAINED_RESIZE_POLICY;
 
 /**
  * Created by Petean Mihai on 1/8/2017.
  */
 public class GUIDesktopView  {
-    TaskController controller;
-    String descriptionField;
-    float durationField;
-    int IDField;
+    TaskController taskController;
+    NotesController notesController;
+
+
+
+    //task controller related
     GridPane mainView = new GridPane();
     TableView<Task> taskTable;
     TableColumn idColumn = new TableColumn("ID");
     TableColumn descColumn = new TableColumn("DESCRIPTION");
     TableColumn durationColumn = new TableColumn("DURATION");
-
-    Button addButton = new Button("ADD");
-    Button removeButton = new Button("REMOVE");
-    Button modifyButton  = new Button("MODIFY");
+    Button taskAddButton = new Button("ADD");
+    Button taskRemoveButton = new Button("REMOVE");
+    Button taskModifyButton = new Button("MODIFY");
     Button logHours = new Button("LOG HOURS");
 
-    public void initTableView(){
+    //note controller related
+    GridPane noteMainView = new GridPane();
+    TableView<Note> noteTable;
+    TableColumn startDate = new TableColumn("DATE");
+    TableColumn text = new TableColumn("TEXT");
+    TableColumn deadline = new TableColumn("UNTIL");
+    Button noteAddButton = new Button("ADD");
+    Button noteRemoveButton = new Button("REMOVE");
+
+
+    public void initNoteTableView(){
+        startDate.setCellValueFactory( new PropertyValueFactory<Note,String>("date"));
+        text.setCellValueFactory(new PropertyValueFactory<Note,String>("text"));
+        deadline.setCellValueFactory(new PropertyValueFactory<Note,String>("until"));
+        noteTable = new TableView<>();
+        noteTable.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
+        noteTable.getColumns().clear();
+        noteTable.getColumns().addAll(startDate,text,deadline);
+        noteTable.setItems(this.notesController.getDataForView());
+    }
+
+    public void noteAddHandler() {
+        GridPane addView = new GridPane();
+        Stage addStage = new Stage();
+        addStage.setScene(new Scene(addView, 300, 100));
+        addStage.setTitle(">Add note");
+        //row; description stuff
+        Label description = new Label("Text:");
+        TextField textField1 = new TextField();
+        HBox hb1 = new HBox();
+        hb1.getChildren().addAll(description, textField1);
+        hb1.setSpacing(10);
+
+        //row; until stuff
+        Label duration = new Label("YYYY/MM/DD");
+        TextField textField2 = new TextField();
+        HBox hb2 = new HBox();
+        hb2.getChildren().addAll(duration, textField2);
+        hb2.setSpacing(10);
+
+        Button submit = new Button("SUBMIT");
+        HBox hb3 = new HBox();
+        hb3.getChildren().add(submit);
+        hb3.setAlignment(Pos.CENTER);
+
+
+        addView.addRow(0, hb1);
+        addView.addRow(1, hb2);
+        addView.addRow(2, submit);
+        addView.setAlignment(Pos.CENTER);
+        addStage.show();
+
+        submit.setOnAction(e -> {
+            try {
+                notesController.addNote(new Note(textField1.getText(), textField2.getText()));
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                addStage.close();
+            }
+            noteTable.setItems(notesController.getDataForView());
+            addStage.close();
+        });
+    }
+
+    public void noteRemoveButtonHandler(){
+        ObservableList<Note> selectedTasks = this.noteTable.getSelectionModel().getSelectedItems();
+        System.out.println(selectedTasks);
+        selectedTasks.forEach(note -> {
+            try {
+                this.notesController.removeNote(note.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        noteTable.setItems(this.notesController.getDataForView());
+    }
+
+    public void initTaskTableView(){
         idColumn.setCellValueFactory( new PropertyValueFactory<Task,String>("ID"));
         descColumn.setCellValueFactory(new PropertyValueFactory<Task,String>("text"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<Task,String>("duration"));
         taskTable = new TableView<>();
         taskTable.getColumns().clear();
         taskTable.getColumns().addAll(idColumn,descColumn,durationColumn);
-        taskTable.setItems(this.controller.getDataForView());
+        taskTable.setItems(this.taskController.getDataForView());
 
     }
 
@@ -52,12 +131,12 @@ public class GUIDesktopView  {
         System.out.println(selectedTasks);
         selectedTasks.forEach(task -> {
             try {
-                this.controller.removeTask(task.getID());
+                this.taskController.removeTask(task.getID());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        taskTable.setItems(this.controller.getDataForView());
+        taskTable.setItems(this.taskController.getDataForView());
     }
 
     public void addButtonHandler() {
@@ -96,12 +175,12 @@ public class GUIDesktopView  {
             @Override
             public void handle(ActionEvent e) {
                 try {
-                    controller.addTask(new Task(textField1.getText(), Float.parseFloat((String) textField2.getText())));
+                    taskController.addTask(new Task(textField1.getText(), Float.parseFloat((String) textField2.getText())));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     addStage.close();
                 }
-                taskTable.setItems(controller.getDataForView());
+                taskTable.setItems(taskController.getDataForView());
                 addStage.close();
             }
         });
@@ -145,12 +224,12 @@ public class GUIDesktopView  {
             public void handle(ActionEvent e) {
                 try {
                     int id = taskTable.getSelectionModel().getSelectedItem().getID();
-                    controller.modifyTask(id,textField1.getText(),Float.parseFloat(textField2.getText()));
+                    taskController.modifyTask(id,textField1.getText(),Float.parseFloat(textField2.getText()));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     modifyStage.close();
                 }
-                taskTable.setItems(controller.getDataForView());
+                taskTable.setItems(taskController.getDataForView());
                 modifyStage.close();
             }
         });
@@ -160,7 +239,7 @@ public class GUIDesktopView  {
         GridPane logHoursView = new GridPane();
         Stage logHoursStage = new Stage();
         logHoursStage.setScene(new Scene(logHoursView, 300, 100));
-        logHoursStage.setTitle(">Modify task");
+        logHoursStage.setTitle(">Log hours");
         //row; description stuff
         Label description = new Label("Duration:");
         TextField textField1 = new TextField();
@@ -176,57 +255,49 @@ public class GUIDesktopView  {
             @Override
             public void handle(ActionEvent e) {
                 try {
+                    String description = taskTable.getSelectionModel().getSelectedItem().getText();
                     int id = taskTable.getSelectionModel().getSelectedItem().getID();
                     float duration = taskTable.getSelectionModel().getSelectedItem().getDuration() - Float.parseFloat(textField1.getText());
                     if(duration > 0)
-                        controller.modifyTask(id,textField1.getText(),duration);
+                        taskController.modifyTask(id,description,duration);
                     else {
-                        controller.removeTask(id);
+                        taskController.removeTask(id);
                     }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     logHoursStage.close();
                 }
-                taskTable.setItems(controller.getDataForView());
+                taskTable.setItems(taskController.getDataForView());
                logHoursStage.close();
             }
         });
     }
 
     public void initButtons() {
-        addButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                addButtonHandler();
-            }
-        });
-        removeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                removeButtonHandler();
-            }
-        });
-        modifyButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                modifyButtonHandler();
-            }
-        });
-        logHours.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                logHoursHandler();
-            }
-        });
+        taskAddButton.setOnAction(e -> addButtonHandler());
+        taskRemoveButton.setOnAction(e -> removeButtonHandler());
+        taskModifyButton.setOnAction(e -> modifyButtonHandler());
+        logHours.setOnAction(e -> logHoursHandler());
+
+        noteAddButton.setOnAction(e -> noteAddHandler());
+        noteRemoveButton.setOnAction(e -> noteRemoveButtonHandler());
 
     }
 
 
 
 
-    public GUIDesktopView(TaskController ctrl){
-        this.controller = ctrl;
-        initTableView();
+    public GUIDesktopView(TaskController taskCtrl, NotesController noteCtrl){
+        this.taskController = taskCtrl;
+        this.notesController = noteCtrl;
+        initTaskTableView();
+        initNoteTableView();
         initButtons();
         this.mainView.add(taskTable,0,0,4,4);
-        this.mainView.addRow(5,addButton,removeButton,modifyButton,logHours);
+        this.mainView.addRow(5, taskAddButton, taskRemoveButton, taskModifyButton,logHours);
         this.mainView.autosize();
+        this.mainView.add(noteTable,0,6,4,4);
+        this.mainView.addRow(11,noteAddButton,noteRemoveButton);
 
     }
     public GridPane getView(){

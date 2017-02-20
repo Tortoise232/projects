@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface IRepository<T> {
     void addObject(T object);
-    void removeObject(T object);
+    T removeObject(T object);
     List<T> getData();
     void setData(List<T> data);
     int getSize();

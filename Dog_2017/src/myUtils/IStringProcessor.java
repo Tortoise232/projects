@@ -1,9 +1,11 @@
 package myUtils;
 
+import java.text.ParseException;
+
 /**
  * Created by Petean Mihai on 1/7/2017.
  */
+//this is created because i don't know generics well enough. a repository holding data of type a will have a type a processor attached
 public interface IStringProcessor<T> {
-        public T processString(String toProcess);
-        public int processID(String toProcess);
+       T processString(String toProcess) throws ParseException;
 }
