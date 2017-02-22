@@ -1,0 +1,11 @@
+Python 28
+Study 75
+C# 5
+Assembly 15
+Arduino 1
+POO_C 8
+OS 2
+Reading 12
+C++ 2
+Python_SDA 3
+end

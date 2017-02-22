@@ -1,0 +1,127 @@
+USE [Universe]
+GO
+/****** Object:  StoredProcedure [dbo].[TestFinal]    Script Date: 01/09/2017 13:53:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[TestFinal]
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+Declare @id int
+Declare @testName varchar(50)
+Declare @tableName varchar(50)
+Declare @noOfRows int
+Declare @tableId int
+Declare @startAt datetime
+Declare @startAtV datetime
+Declare @endAt datetime
+Declare @endAtV datetime
+Declare @viewName varchar(100)
+Declare @viewId int
+Declare @endAtF datetime
+Declare @startAtF datetime
+Declare @position int
+
+
+
+DELETE FROM TestRunTables
+DELETE FROM TestRunViews
+DELETE FROM TestRuns
+
+Declare tes cursor for Select * From Tests 
+open  tes  
+FETCH NEXT From tes Into @id,@testName
+
+while @@FETCH_STATUS=0
+Begin
+
+Set identity_insert TestRuns on 
+Insert into TestRuns (TestRunID,Description) Values (@id,@testName)
+set identity_insert TestRuns off 
+print('Test:'+@testName)
+
+Declare  tes2 cursor for Select Tables.Name,TestTables.NoOfRows,Tables.TableID From TestTables inner join Tables on TestTables.TableID=Tables.TableID Where  TestTables.TestID=@id Order By Position Asc
+open tes2
+
+Fetch NEXT from tes2 into @TableName,@noOfRows,@tableId
+while @@FETCH_STATUS=0
+begin
+print('Table Name :'+@tableName)
+
+Declare @insertCommand varchar(100) ='Insert'+@tableName+' '+cast(@noOfRows as varchar)
+Set @startAt=GETDATE()
+Exec (@insertcommand)
+Set @endAt=GETDATE()
+
+Insert Into TestRunTables(TestRunId,TableId,StartAt,EndAt) Values(@id,@tableId,@startAt,@endAt)
+
+FEtch NExt From tes2 Into @tableName,@noOfRows,@tableId
+END 
+close tes2
+Deallocate tes2
+
+
+Declare tes3 Cursor For Select Views.Name,Views.ViewID From TestViews inner join Views on TestViews.ViewID=Views.ViewID Where TestViews.TestID=@id
+Open tes3
+
+Fetch NExt FRom Tes3 Into @viewName,@viewId
+while @@FETCH_STATUS=0
+Begin
+print('View :' + @viewName)
+
+Declare @viewcommand varchar(100)
+Set @viewcommand='Select * From '+@viewName
+Set @startAtV=GETDATE()
+exec (@viewcommand)
+Set @endAtV=GETDATE()
+
+Insert Into TestRunViews(TestRunID,ViewID,StartAt,EndAt) Values (@id,@viewId,@startAtV,@endAtV)
+Fetch Next From tes3 into @viewName,@viewId
+End
+Close tes3
+Deallocate tes3
+
+Select @startAtF=TestRunTables.StartAt From TestRunTables inner join Tables on TestRunTables.TableID=Tables.TableID inner join TestTables on TestTables.TableID=Tables.TableID
+Where TestTables.Position=1 and TestRunTables.TestRunID=TestTables.TestID
+
+
+Set @endAtF=@endAtV
+Update TestRuns
+Set StartAt=@startAtF,EndAt=@endAtF Where TestRunID=@id  And Description =@testName
+
+
+
+Fetch Next From tes Into @id,@testName
+END
+
+
+Close tes
+Deallocate tes
+
+Declare tes4 cursor for Select Tables.Name,TestTables.Position From Tables,TestTables where Tables.TableID=TestTables.TableID Order By Position DESC
+Open Tes4
+ 
+ Fetch Next From tes4 Into @tableName,@position
+		 while @@FETCH_STATUS=0
+		 Begin
+			 print('Delete :'+@tableName)
+			
+			  Declare @deletecommand varchar(100)
+			  Set @deletecommand='Delete'+@tableName+' 3'
+			  Exec (@deletecommand)
+			  Fetch Next From tes4 Into @tableName,@position
+		End
+Close tes4
+Deallocate tes4
+END

@@ -1,0 +1,7 @@
+POO http://www.cs.ubbcluj.ro/~iuliana/oop/
+SO http://www.cs.ubbcluj.ro/~rares/course/os/
+AG http://www.cs.ubbcluj.ro/~rlupsa/edu/grafe/
+SDA http://www.cs.ubbcluj.ro/~rlupsa/edu/dsa/
+SD http://www.math.ubbcluj.ro/~abuica/dynsys.htm
+GEOMETRIE http://math.ubbcluj.ro/~cpintea/teaching/
+end

@@ -5,10 +5,14 @@ import domain.Task;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import repository.FileRepository;
 import repository.IRepository;
 import repository.InMemoryRepository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
 
@@ -17,10 +21,18 @@ import java.util.stream.Collector;
  */
 public class TaskController {
     IRepository<ITask> repo;
-
+    TaskControllerLogger logger;
     public TaskController(IRepository<ITask> givenRepo){
         this.repo = givenRepo;
+        this.logger = new TaskControllerLogger();
     }
+
+    public String getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
 
     public void addTask(ITask newTask) throws Exception {
         if(this.findTask(newTask.getID()) != null) {
@@ -33,15 +45,18 @@ public class TaskController {
             newTask.setID(maxID[0] + 1);
         }
         repo.addObject(newTask);
+        logger.Log(getDate() + ": ADDED " + newTask.getText() + " WITH " + newTask.getDuration() + " HOURS");
 
     }
 
     public void removeTask(int id) throws Exception {
-        repo.removeObject(this.findTask(id));
+        ITask taskToRemove = repo.removeObject(this.findTask(id));
+        logger.Log(getDate() + ": REMOVED " + taskToRemove.getText());
     }
 
-    public void removeTask(ITask task){
-        repo.removeObject(task);
+    public void removeTask(ITask task) throws Exception{
+        ITask taskToRemove = repo.removeObject(task);
+        logger.Log(getDate() + ": REMOVED " + taskToRemove.getText());
     }
 
     public ITask findTask(int id) throws Exception {
@@ -54,14 +69,24 @@ public class TaskController {
     }
 
     public void modifyTask(int id, String newText,float newDuration) throws Exception {
+        boolean loggedHours = false;
+
         ITask task = this.findTask(id);
+        float oldDuration = task.getDuration();
+        if(task.getText() == newText && newDuration < task.getDuration())
+            loggedHours = true;
         task.setDuration(newDuration);
         task.setText(newText);
+        if(loggedHours)
+            logger.Log(getDate() + ": LOGGED " + (oldDuration - newDuration) + " HOURS ON TASK " + newText);
+        else
+            logger.Log(getDate() + ": MODIFIED " + task.getText() + " WITH " + task.getDuration() + " HOURS TO " + newText + " WITH " + newDuration + " HOURS");
     }
 
     public void modifyTask(ITask modifiedTask) throws Exception {
         ITask task = this.findTask(modifiedTask.getID());
         task = modifiedTask;
+        logger.Log(getDate() + ": MODIFIED " + task.getText() + " WITH " + task.getDuration() + " HOURS TO " + modifiedTask.getText() + " WITH " + modifiedTask + " HOURS");
     }
 
     public List<ITask> getRepoTasks(){
@@ -80,4 +105,5 @@ public class TaskController {
         });
         return FXCollections.observableArrayList(result);
     }
+
 }
