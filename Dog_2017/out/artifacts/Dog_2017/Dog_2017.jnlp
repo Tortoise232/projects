@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Dog_2017.jar" size="42921" download="eager" />
+    <jar href="Dog_2017.jar" size="47166" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="Dog_2017" />
   <update check="background"/>

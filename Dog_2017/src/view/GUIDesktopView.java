@@ -53,7 +53,7 @@ public class GUIDesktopView  {
         text.setCellValueFactory(new PropertyValueFactory<Note,String>("text"));
         deadline.setCellValueFactory(new PropertyValueFactory<Note,String>("until"));
         noteTable = new TableView<>();
-        noteTable.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
+       // noteTable.setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
         noteTable.getColumns().clear();
         noteTable.getColumns().addAll(startDate,text,deadline);
         noteTable.setItems(this.notesController.getDataForView());
@@ -293,11 +293,14 @@ public class GUIDesktopView  {
         initTaskTableView();
         initNoteTableView();
         initButtons();
+
+        this.mainView.addRow(0,new Label("Tasks table: "));
         this.mainView.add(taskTable,0,0,4,4);
-        this.mainView.addRow(5, taskAddButton, taskRemoveButton, taskModifyButton,logHours);
-        this.mainView.autosize();
-        this.mainView.add(noteTable,0,6,4,4);
-        this.mainView.addRow(11,noteAddButton,noteRemoveButton);
+        this.mainView.addRow(6, taskAddButton, taskRemoveButton, taskModifyButton,logHours);
+       // this.noteMainView.addRow(0,new Label("Notes table: "));
+        this.noteMainView.add(noteTable,0,0,4,4);
+        this.noteMainView.addRow(6,noteAddButton,noteRemoveButton);
+        this.mainView.addColumn(5,noteMainView);
 
     }
     public GridPane getView(){

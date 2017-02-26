@@ -32,7 +32,7 @@ public class Main extends Application{
         GUIDesktopView myView = new GUIDesktopView(controller, new NotesController());
         Parent root = myView.getView();
         primaryStage.setTitle(">Dog2017");
-        primaryStage.setScene(new Scene(root, 500, 500));
+        primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {

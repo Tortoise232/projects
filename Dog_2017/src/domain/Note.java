@@ -67,7 +67,7 @@ public class Note {
 
     @Override
     public String toString(){
-        return getDate() + " " + getUntil() + " " + text;
+        return date + " " + getUntil() + " " + text;
     }
 
 }

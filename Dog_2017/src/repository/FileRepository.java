@@ -19,7 +19,14 @@ public class FileRepository<T> implements IRepository<T> {
     protected int currentNo = 0;
     protected List<T> temporaryHold; //why? because of ease, I guess.
     protected IStringProcessor<T> stringProcessor;
+
     public FileRepository(String fileName,IStringProcessor<T> processor ) throws IOException, ParseException {
+
+        //if the file isn't there just make it
+        File test = new File(fileName + ".txt");
+        if(!test.isFile())
+            test.createNewFile();
+
         this.temporaryHold = new ArrayList<T>();
         this.fileName = fileName;
         this.stringProcessor = processor;
@@ -28,6 +35,7 @@ public class FileRepository<T> implements IRepository<T> {
             dataLoader = new BufferedReader(new FileReader(fileName + ".txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+
         }
         String object = dataLoader.readLine();
         while(object != null) {

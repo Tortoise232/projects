@@ -26,6 +26,7 @@ public class NotesController {
             this.repo = new FileRepository<>("notes",new NotesProcessor());
         } catch (IOException e) {
             e.printStackTrace();
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
