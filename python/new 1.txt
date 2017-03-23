@@ -1,0 +1,18 @@
+PROJECT THING
+
+ENTRY POINTS (these should have views attached):
+user/student (posts assignment)
+teacher/ superUser? (corrects assignments)
+dataBase manager / system manager 
+
+
+SYSTEMS -this should all be documented; this all has to contain loggers; also everything should be tested:
+data management (database, infile, xml, csv, dbo);
+teacher management of a paper (check plagiarism, rate, give comment, opinion, forward?);
+messenger? (between students and teachers, maybe commentaries type of thing or just messenger type of thing);
+system manager; (logging stuff, checking logs, crud on any paper, admin rights for any messenger situation);
+
+RULES:
+Nothing should be developed from GUI down; always go up from the bottom layer (makes fukin sense dontit?);
+Test your functions; have tests on the go;
+Post about the frameworks you are going to use;
