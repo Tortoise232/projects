@@ -4,6 +4,7 @@ import domain.Note;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import myUtils.NotesProcessor;
+import repository.DbRepo;
 import repository.FileRepository;
 import repository.IRepository;
 
@@ -22,14 +23,7 @@ public class NotesController {
     }
 
     public NotesController(){
-        try {
-            this.repo = new FileRepository<>("notes",new NotesProcessor());
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+            this.repo = new DbRepo();
     }
 
     public void addNote(Note myNote){

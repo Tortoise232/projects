@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import myUtils.IStringProcessor;
 import myUtils.TaskProcessor;
+import repository.DbRepo;
 import repository.FileRepository;
 import repository.IRepository;
 import view.ConsoleDesktopView;
@@ -27,6 +28,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         IStringProcessor<ITask> myProcessor = new TaskProcessor();
+
         FileRepository<ITask> repo = new FileRepository<>("tasks",myProcessor);
         TaskController controller = new TaskController(repo);
         GUIDesktopView myView = new GUIDesktopView(controller, new NotesController());
